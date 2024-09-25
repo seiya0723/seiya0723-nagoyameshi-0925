@@ -1,0 +1,86 @@
+body {
+    background-color: #eef3fa;
+    font-family: 'Arial', sans-serif;
+    margin: 0; 
+    padding: 0;
+}
+
+
+.container {
+    margin-top: 20px;
+    padding: 20px; 
+    background-color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+
+form {
+    margin-bottom: 20px; 
+    display: flex;
+    align-items: center; 
+}
+
+/* 検索フォーム */
+input[type="text"] {
+    padding: 5px;
+    font-size: 1em; 
+    margin-right: 10px; 
+    border-radius: 5px; 
+    border: 1px solid #b0b8c1; 
+}
+
+/* 検索ボタン */
+input[type="submit"] {
+    background-color: #5e7d9b; 
+    color: white; 
+    padding: 5px 10px; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+/* 検索ボタンにカーソルを重ねとき */
+input[type="submit"]:hover {
+    background-color: #496384;
+}
+
+/* 店舗情報(カードデザイン） */
+.restaurant-card {
+    background-color: #ffffff;
+    border-radius: 10px; 
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); 
+    padding: 15px; 
+    margin-bottom: 20px; 
+}
+
+/* 店舗名 */
+.restaurant-card .name {
+    margin: 0; 
+    font-size: 1.5em; 
+    color: #2c3e50; 
+    background-color: #c9d6df; 
+    padding: 5px; 
+    border-radius: 5px;
+}
+
+/* 店舗説明 */
+.restaurant-card .description {
+    font-size: 1em; 
+    color: #495057; 
+    background-color: #e8ecf1; 
+    padding: 5px; 
+    border-radius: 5px; 
+    margin-top: 10px;
+}
+
+/* 営業時間 */
+.restaurant-card .hours {
+    font-size: 0.8em; 
+    color: #6c757d; 
+    background-color: #d3f4d3; 
+    padding: 5px; 
+    border-radius: 5px; 
+    margin-top: 10px; 
+}
+

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}NAGOYAMESHI{% endblock %}
+{% block content %}
+
+{# トップページのコンテンツを書く #}
+
+{# TODO: 検索のフォーム(formタグを使う) #}
+
+{# 送信先とメソッドは TopViewのgetメソッド #}
+{# action属性: 指定したURLへリクエストを送信する。未指定の場合はページを表示しているURLへ送信される #}
+{# method属性: 指定したリクエストのメソッドで送信する。未指定の場合getメソッドで送信される #}
+<form action="">
+    {# textボックスの内容を、TopViewのgetメソッドで確認するには、name属性をつける。#}
+    <input type="text" name="search">
+    <input type="submit" value="検索">
+</form>
+
+{# TODO: コンテンツ(店舗の一覧) #}
+{# restaurants を1つずつ取り出して、レンダリングする。forループを使う。(ListViewのテンプレートでも使った) #}
+
+{% for restaurant in restaurants %}
+<div class="restaurant-card">
+    <div class="name">{{ restaurant.name }}</div>
+    <div class="description">{{ restaurant.description }}</div>
+    <div class="hours">{{ restaurant.start_at }}~{{ restaurant.end_at }}</div>
+
+    {# urlテンプレートタグ : urlの名前 でURLを作ることができる。 引数を与えることもできる。 #}
+    <a href="{% url 'restaurant' restaurant.id %}">詳細ページ</a>
+</div>
+{% endfor %}
+
+{% endblock %}

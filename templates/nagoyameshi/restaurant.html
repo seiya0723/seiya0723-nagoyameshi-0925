@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block title %}NAGOYAMESHI{% endblock %} {% block content %}
+店舗詳細ページ
+{{ restaurant.name }}
+{# 店舗説明(description)を表示するには？ #}
+{{ restaurant.description }}
+{{ restaurant.start_at }}~{{ restaurant.end_at }}
+
+
+{# TODO: レビュー投稿用のフォームを作る #}
+
+{# action属性: このフォームの送信先のURLを指定する #}
+{# {% url 'restaurant' restaurant.id %} と {% url 'URL名' 引数 %} でURLが作られる。 #}
+{# {% url 'review' restaurant.id %} #}
+
+<form action="{% url 'review' restaurant.id %}" method="post">
+    {% csrf_token %}
+
+    {# userとrestaurantがクライアント側から指定できると、なりすましできる。サーバー側で保存する。 #}
+    {% comment %}
+    <input type="text" name="user" value="{{ request.user.id }}">
+    <input type="text" name="restaurant" value="{{ restaurant.id }}">
+    {% endcomment %}
+
+    <input type="number" name="star" min="1" max="5">
+    <input type="text" name="content">
+
+    <input type="submit" value="投稿">
+</form>
+
+{# TODO:お気に入りのボタンを用意する #}
+<form action="{% url 'favorite' restaurant.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="お気に入りする">
+</form>
+
+
+{# 予約フォーム #}
+<form action="{% url 'reservation' restaurant.id %}" method="post">
+    {% csrf_token %}    
+    <input type="datetime-local" name="datetime">
+    <input type="text" name="headcount">
+    <input type="submit" value="予約">
+</form>
+
+
+
+<h2>レビュー一覧</h2>
+
+{# reviews を1つずつ取り出して表示する #}
+{% for review in reviews %}
+<div>
+    <div>投稿日時: {{ review.created_at }}</div>
+    <div>星の数: {{ review.star }}</div>
+    <div>投稿者: {{ review.user }}</div>
+    <div>レビュー: {{ review.content }}</div>
+</div>
+{% endfor %}
+
+{% endblock %}

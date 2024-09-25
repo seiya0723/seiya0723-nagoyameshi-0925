@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}NAGOYAMESHI{% endblock %}
+
+
+{% block content %}
+<h2>マイページ</h2>
+
+<h2>お気に入りした店舗</h2>
+
+{% for favorite in favorites %}
+<div>
+    <div>店舗名: {{ favorite.restaurant }}</div>
+
+    <a href="{% url 'restaurant' favorite.restaurant.id %}">詳細</a>
+</div>
+{% endfor %}
+
+
+
+<h2>有料会員登録をする</h2>
+
+{% if is_premium %}
+<a href="{% url 'portal' %}">有料会員設定</a>
+{% else %}
+{# CheckoutView の postメソッドを呼び出す。 #}
+<form action="{% url 'checkout' %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="有料会員登録をする">
+</form>
+
+{% endif %}
+
+
+
+
+
+
+
+{% endblock %}
